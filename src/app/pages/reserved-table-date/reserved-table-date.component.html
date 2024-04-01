@@ -1,0 +1,95 @@
+<nz-card style="width: 100%" nzTitle = "Reserved table date">
+  <nz-table
+    #middleTable
+    nzTableLayout="fixed"
+    [nzPageSize]="10"
+    nzBordered
+    nzSize="middle"
+    [nzScroll]="{ y: '300px' }"
+    [nzData]="reservedTabelDate"
+  >
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Number of People</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of middleTable.data">
+        <ng-container *ngIf="!editCache[data.id].edit; else editTemplate">
+          <td>{{ data.id }}</td>
+          <td>{{ data.date | date : "mediumDate" }}</td>
+          <td>{{ data.numberOfTableReserved }}</td>
+          <td>
+            <button
+              nz-button
+              nzType="primary"
+              (click)="startEdit(data.id)"
+              nzGhost
+            >
+              <span nz-icon nzType="edit"></span>
+            </button>
+            <button
+              nz-button
+              nz-popconfirm
+              nzDanger
+              style="margin-left: 10px"
+              nzPopconfirmTitle="Sure to delete {{
+                data.date | date : 'mediumDate'
+              }}?"
+              (nzOnConfirm)="deleteData(data.id)"
+            >
+              <span nz-icon nzType="delete" nzTheme="outline"></span>
+            </button>
+          </td>
+        </ng-container>
+        <ng-template #editTemplate>
+          <td>
+            <input
+              type="number"
+              nz-input
+              [(ngModel)]="editCache[data.id].data.id"
+            />
+          </td>
+          <td>
+            <input
+              type="date"
+              nz-input
+              [(ngModel)]="editCache[data.id].data.date"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              nz-input
+              [(ngModel)]="editCache[data.id].data.numberOfTableReserved"
+            />
+          </td>
+          <td>
+            <button
+              nz-button
+              (click)="saveEdit(data.id)"
+              class="save"
+              nzType="primary"
+              nzShape="circle"
+            >
+              <span nz-icon nzType="save"></span>
+            </button>
+            <button
+              style="margin-left: 10px"
+              nz-button
+              nzShape="circle"
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to cancel?"
+              (nzOnConfirm)="cancelEdit(data.id)"
+            >
+              <span nz-icon nzType="close-square"></span>
+            </button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>

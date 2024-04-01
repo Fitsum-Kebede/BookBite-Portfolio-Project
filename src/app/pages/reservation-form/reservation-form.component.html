@@ -1,0 +1,220 @@
+<div class="form-container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <h5>
+          Total number of tables :
+          <code>{{ totalNumberOfSitsAvailable }}</code>
+        </h5>
+        <h5>
+          Available number of tables :
+          <code> {{ numberOfReservedTable }} </code>
+        </h5>
+      </div>
+      <form class="row" [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+        <div class="mb-3">
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            placeholder="Full Name"
+            formControlName="fullName"
+            id="fullName"
+            name="fullName"
+            [ngClass]="{
+              'is-invalid': submitted && controls['fullName'].errors
+            }"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && controls['fullName'].errors"
+          >
+            <span *ngIf="controls['fullName'].errors['required']">
+              Full name is required
+            </span>
+            <span *ngIf="controls['fullName'].errors['minlength']">
+              Full name is must >=3 Charactrers
+            </span>
+            <span *ngIf="controls['fullName'].errors['pattern']">
+              Full name is must A to Z or a to z
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <input
+              class="form-control form-control-lg"
+              type="tel"
+              placeholder="Phone Number"
+              formControlName="phone"
+              id="phone"
+              name="phone"
+              [ngClass]="{
+                'is-invalid': submitted && controls['phone'].errors
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['phone'].errors"
+            >
+              <span *ngIf="controls['phone'].errors['required']">
+                Phone number is required!
+              </span>
+              <span *ngIf="controls['phone'].errors['pattern']">
+                Phone number is must be valid!
+              </span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control form-control-lg"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              id="email"
+              name="email"
+              [ngClass]="{
+                'is-invalid': submitted && controls['email'].errors
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['email'].errors"
+            >
+              <span *ngIf="controls['email'].errors['email']">
+                Email is must be valid!
+              </span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control form-control-lg"
+              type="number"
+              formControlName="numberOfPeople"
+              id="numberOfPeople"
+              name="numberOfPeople"
+              min="2"
+              [max]="numberOfReservedTable"
+              [ngClass]="{
+                'is-invalid': submitted && controls['numberOfPeople'].errors
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['numberOfPeople'].errors"
+            >
+              <span *ngIf="controls['numberOfPeople'].errors['required']">
+                Number of people is required!
+              </span>
+              <span *ngIf="controls['numberOfPeople'].errors['min']">
+                Number of people is not lessthan 2!
+              </span>
+              <span *ngIf="controls['numberOfPeople'].errors['max']">
+                Number of people is not greaterthan {{ numberOfReservedTable }}!
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <input
+              class="form-control form-control-lg"
+              type="date"
+              formControlName="date"
+              placeholder="MM/DD/YYYY"
+              id="date"
+              name="date"
+              [min]="currentDate"
+              (change)="calculateDateOfReservedTable()"
+              [ngClass]="{
+                'is-invalid': submitted && controls['date'].errors
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['date'].errors"
+            >
+              <span *ngIf="controls['date'].errors['required']">
+                Date is required!
+              </span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input
+              class="form-control form-control-lg"
+              type="time"
+              formControlName="time"
+              placeholder="HH:MM"
+              id="time"
+              name="time"
+              [ngClass]="{
+                'is-invalid': submitted && controls['time'].errors
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['time'].errors"
+            >
+              <span *ngIf="controls['time'].errors['required']">
+                Time is required!
+              </span>
+              <span *ngIf="controls['time'].hasError('invalidTime')">
+                Time must be between 11:00 AM and 11:30 PM.!
+              </span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <select
+              formControlName="occasion"
+              class="form-select form-select-lg"
+              id="occasion"
+              name="occasion"
+              [ngClass]="{
+                'is-invalid': submitted && controls['occasion'].errors
+              }"
+            >
+              <option value="">Select Occasion</option>
+              <option value="Birthday">Birthday</option>
+              <option value="Anniversary">Anniversary</option>
+              <option value="Engagement">Engagement</option>
+              <option value="Graduation">Graduation</option>
+              <option value="Farewell">Farewell</option>
+              <option value="Other Special Event">Other Special Event</option>
+            </select>
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['time'].errors"
+            >
+              <span *ngIf="controls['time'].errors['required']">
+                Occasion is required!
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <textarea
+            class="form-control form-control-lg"
+            formControlName="message"
+            id="message"
+            name="message"
+            placeholder="Message"
+            rows="2"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-lg" type="submit">
+            Book Reservation
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <nz-carousel nzAutoPlay>
+        <div nz-carousel-content *ngFor="let index of carosilData">
+          <img width="700px" height="510px" [src]="index.uri" alt="name" />
+          <h3>{{ index.title }}</h3>
+          <p>{{ index.description }}</p>
+        </div>
+      </nz-carousel>
+    </div>
+  </div>
+</div>
