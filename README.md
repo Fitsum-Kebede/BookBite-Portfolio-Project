@@ -1,6 +1,6 @@
 # Introduction
 
-The Restaurant Reservation System is a web application developed to simplify the process of making reservation at our restaurant. It provides users with , view menus, and make reservations seamlessly. 
+BookBite Restaurant Reservation System is a web application developed to show case our resturant and to simplify the process of making reservation at our restaurant. It provides users with , view menus, and make reservations seamlessly. 
 
 # Features
 
