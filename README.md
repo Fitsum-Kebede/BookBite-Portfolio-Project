@@ -1,3 +1,12 @@
+# Introduction
+
+The Restaurant Reservation System is a web application developed to simplify the process of making reservation at our restaurant. It provides users with , view menus, and make reservations seamlessly. 
+
+# Features
+
+View Menus: Menus for the restaurant is available for users to explore, helping them make informed decisions.
+Make Reservations: Users can easily make reservations for their desired date, time, and party size, with real-time availability updates.
+Manage Bookings: Admin can manage the reservations, including viewing, editing, or canceling bookings.
 # BookBite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
