@@ -29,7 +29,7 @@ export class ReservationFormComponent {
       id: 1,
       title: 'Reservation One',
       description: 'Apptizer',
-      uri: '../../../assets/images01.jpg',
+      uri: '../../../assets/img/gallery/g9.jpg',
     },
     {
       id: 2,

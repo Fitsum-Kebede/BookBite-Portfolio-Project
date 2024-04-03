@@ -616,21 +616,17 @@
           <h2>gallery</h2>
           <p>Check <span>Our Gallery</span></p>
         </div>
-
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g9.jpg"><img src="assets/img/gallery/g9.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g5.jpg"><img src="assets/img/gallery/g5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g1.jpg"><img src="assets/img/gallery/g1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g4.jpg"><img src="assets/img/gallery/g4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g8.jpg"><img src="assets/img/gallery/g8.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g6.jpg"><img src="assets/img/gallery/g6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g7.jpg"><img src="assets/img/gallery/g7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/g2.jpg"><img src="assets/img/gallery/g2.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
+      
+        <div class="gallery-slider ">
+         
+          <nz-carousel nzAutoPlay>
+            <div nz-carousel-content *ngFor="let index of carosilData">
+              <img width="580px" height="580px" [src]="index.uri" alt="name" />
+              
+            </div>
+          </nz-carousel>
         </div>
-
+      
       </div>
     </section><!-- End Gallery Section -->
 <!-- End Gallery Section -->
