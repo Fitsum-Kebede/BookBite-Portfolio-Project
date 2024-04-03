@@ -14,6 +14,7 @@ export class ReservationService {
 
   // Simulated API endpoint for reservations
   private reservationsUrl = `${this.baseUrl}/reservations`;
+  private reservationsUrl2 = `${this.baseUrl}/comment`;
   private numberOfSitsAvaUrl = `${this.baseUrl}/totalAvailableSits`;
   private numberOfReservedTabelDateUrl = `${this.baseUrl}/reservedTableDates`;
 
@@ -23,7 +24,11 @@ export class ReservationService {
       .get<any>(this.reservationsUrl)
       .pipe(catchError(this.handleError<any>('Get Reserved Data')));
   }
-
+  getReservations2(): Observable<any> {
+    return this.http
+      .get<any>(this.reservationsUrl2)
+      .pipe(catchError(this.handleError<any>('Get Reserved Data')));
+  }
   // Get only one reservation data
   getReservationById(id: number): Observable<any> {
     return this.http
@@ -37,7 +42,11 @@ export class ReservationService {
       .post<any>(this.reservationsUrl, reservation)
       .pipe(catchError(this.handleError<any>('Create Reservation')));
   }
-
+  createReservationcomment(comment: any): Observable<any> {
+    return this.http
+      .post<any>(this.reservationsUrl2, comment)
+      .pipe(catchError(this.handleError<any>('Create Reservation')));
+  }
   // Delete reservation
   deleteReservation(id: number): Observable<any> {
     return this.http

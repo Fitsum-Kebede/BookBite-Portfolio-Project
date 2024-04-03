@@ -16,6 +16,7 @@ import { ReservationService } from 'src/app/reservation.service';
 })
 export class ReservationFormComponent {
   reservationForm!: FormGroup;
+  reservationForm2!: FormGroup;
   totalNumberOfSitsAvailable: number = 40;
   numberOfReservedTable: number = 40;
   filteredReservedTable: ReservedTableDate[] = [];
@@ -52,6 +53,7 @@ export class ReservationFormComponent {
 
   ngOnInit() {
     this.reservationFormValidation();
+    this.reservationFormValidation2();
     this.getTotalSits();
     this.getReservedTableDate();
   }
@@ -83,13 +85,37 @@ export class ReservationFormComponent {
       message: new FormControl(''),
       status: new FormControl('Pending'),
       numberOfPeople: new FormControl(
-        2,
+        2,  
         Validators.compose([
           Validators.required,
           Validators.min(2),
           Validators.max(this.numberOfReservedTable),
         ])
       ),
+    });
+  }
+  reservationFormValidation2() {
+    this.reservationForm2 = new FormGroup({
+      fullName: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.pattern('[a-zA-Z ]*'),
+        ])
+      ),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/
+        ),
+      ]),
+      email: new FormControl('', Validators.email),
+      
+      message: new FormControl(''),
+      status: new FormControl('Pending'),
+     
     });
   }
 
@@ -132,13 +158,19 @@ export class ReservationFormComponent {
   get controls() {
     return this.reservationForm.controls;
   }
-
+  get controls2() {
+    return this.reservationForm2.controls;
+  }
   private timeRangeValidator(control: { value: any }) {
     const inputTime = control.value;
     const isValid = inputTime >= '11:00' && inputTime <= '23:30';
     return isValid ? null : { invalidTime: true };
   }
-
+  private timeRangeValidator2(control2: { value: any }) {
+    const inputTime = control2.value;
+    const isValid = inputTime >= '11:00' && inputTime <= '23:30';
+    return isValid ? null : { invalidTime: true };
+  }
   calculateDateOfReservedTable() {
     this.selectedDate = this.reservationForm.value.date;
     this.reservationService
@@ -163,7 +195,30 @@ export class ReservationFormComponent {
         }
       });
   }
-
+  calculateDateOfReservedTable2() {
+    this.selectedDate = this.reservationForm2.value.date;
+    this.reservationService
+      .getNumberOfReservedTables()
+      .subscribe((response: ReservedTableDate[]) => {
+        this.filteredReservedTable = response.filter(
+          (reservedTabeleData: { date: any }) =>
+            reservedTabeleData.date == this.selectedDate.toString()
+        );
+        if (this.filteredReservedTable.length) {
+          for (
+            let index = 0;
+            index < this.filteredReservedTable.length;
+            index++
+          ) {
+            this.numberOfReservedTable =
+              this.totalNumberOfSitsAvailable -
+              this.filteredReservedTable[index].numberOfTableReserved;
+          }
+        } else {
+          this.numberOfReservedTable = this.totalNumberOfSitsAvailable;
+        }
+      });
+  }
   updateReservedTable() {
     var id, date;
     var numberOfTableReserved = 0;
@@ -202,7 +257,20 @@ export class ReservationFormComponent {
         console.log('New Reservation table with Date was added');
       });
   }
-
+  createNewTableDate2() {
+    var reserveDateTable = {
+      date: this.reservationForm2.value.date,
+      numberOfTableReserved: 1,
+    };
+    this.reservationService
+      .createNewTable(reserveDateTable)
+      .subscribe((response: ReservedTableDate) => {
+        console.log(response);
+        this.numberOfReservedTable =
+          this.totalNumberOfSitsAvailable - response.numberOfTableReserved;
+        console.log('New Reservation table with Date was added');
+      });
+  }
   submitForm() {
     this.submitted = true;
     if (this.reservationForm.invalid) {
@@ -219,6 +287,26 @@ export class ReservationFormComponent {
           }
           alert('Reservation successful!');
           this.reservationForm.reset();
+          this.submitted = false;
+        } else {
+          alert('Something went wrong!');
+        }
+      });
+  }
+  submitForm2() {
+    alert('Something went wrong!');
+    console.log(this.reservationForm2.value);
+    this.submitted = true;
+    
+    this.reservationService
+      .createReservationcomment(this.reservationForm2.value)
+      .subscribe((response) => {
+        if (response) {
+       
+            //this.createNewTableDate2();
+         
+          alert('Reservation successful!');
+          this.reservationForm2.reset();
           this.submitted = false;
         } else {
           alert('Something went wrong!');

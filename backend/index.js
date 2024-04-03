@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./config/config');
 const authRoutes = require('./routes/auth');
 const reservationRoutes = require('./routes/reservations');
+const reservationcomment = require('./routes/comment');
 const reservedTableDateRoutes = require('./routes/reserved-table-date');
 const totalAvailableSitRoutes = require('./routes/total-ava-sits');
 const cors = require('cors');
@@ -19,6 +20,7 @@ app.use(cors({
 
 app.use('/api/auth', authRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/comment', reservationcomment);
 app.use('/api/totalAvailableSits', totalAvailableSitRoutes);
 app.use('/api/reservedTableDates', reservedTableDateRoutes);
 

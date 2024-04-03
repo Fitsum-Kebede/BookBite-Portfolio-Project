@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'reservation-form', component: ReservationFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'res', component: ResComponent },
+  { path: 'res', component: ResComponent ,canActivate: [AuthGuard],},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '404', component: ErrorComponent },
   { path: '**', redirectTo: '/404' },
