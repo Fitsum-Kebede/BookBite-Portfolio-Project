@@ -231,7 +231,7 @@ export class ReservationFormComponent {
     var reserveDateTable = {
       id: id,
       date: date,
-      numberOfTableReserved: numberOfTableReserved + 1,
+      numberOfTableReserved: numberOfTableReserved +  this.reservationForm.value.numberOfPeople,
     };
     this.reservationService
       .updateNumberOfReservedTable(reserveDateTable, id)
@@ -246,7 +246,7 @@ export class ReservationFormComponent {
   createNewTableDate() {
     var reserveDateTable = {
       date: this.reservationForm.value.date,
-      numberOfTableReserved: 1,
+      numberOfTableReserved: this.reservationForm.value.numberOfPeople,
     };
     this.reservationService
       .createNewTable(reserveDateTable)
@@ -294,7 +294,7 @@ export class ReservationFormComponent {
       });
   }
   submitForm2() {
-    alert('Something went wrong!');
+    
     console.log(this.reservationForm2.value);
     this.submitted = true;
     
@@ -305,7 +305,7 @@ export class ReservationFormComponent {
        
             //this.createNewTableDate2();
          
-          alert('Reservation successful!');
+          alert('message sent successfully!');
           this.reservationForm2.reset();
           this.submitted = false;
         } else {
