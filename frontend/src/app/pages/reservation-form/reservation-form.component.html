@@ -885,117 +885,117 @@
               </div>
             </div>
           </div><!-- End Info Item -->
-
-        </div>
-
-        <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-          <form [formGroup]="reservationForm2" (ngSubmit)="submitForm2()" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-            <div class="row gy-4">
-              <div class="col-lg-4 col-md-6">
-               
-                <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder="Your Name"
-          formControlName="fullName"
-          id="fullName"
-          name="fullName"
-          [ngClass]="{
-            'is-invalid': submitted && controls['fullName'].errors
-          }"
-        />
-                <div class="validate"><div
-                  class="invalid-feedback"
-                  *ngIf="submitted && controls['fullName'].errors"
-                >
-                  <span *ngIf="controls['fullName'].errors['required']">
-                    Full name is required
-                  </span>
-                  <span *ngIf="controls['fullName'].errors['minlength']">
-                    Full name is must >=3 Charactrers
-                  </span>
-                  <span *ngIf="controls['fullName'].errors['pattern']">
-                    Full name is must A to Z or a to z
-                  </span>
-                </div></div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <input
+          <div class="d-flex align-items-center reservation-form-bg">
+            <form [formGroup]="reservationForm2" (ngSubmit)="submitForm2()" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+              <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                 
+                  <input
             class="form-control form-control-lg"
-            placeholder="Your Email"
-            type="email"
-            formControlName="email"
-            id="email"
-            name="email"
+            type="text"
+            placeholder="Your Name"
+            formControlName="fullName"
+            id="fullName"
+            name="fullName"
             [ngClass]="{
-              'is-invalid': submitted && controls['email'].errors
+              'is-invalid': submitted && controls['fullName'].errors
             }"
           />
-                <div class="validate">
-                  <div
-            class="invalid-feedback"
-            *ngIf="submitted && controls['email'].errors"
-          >
-            <span *ngIf="controls['email'].errors['email']">
-              Email is must be valid!
-            </span>
-          </div>
+                  <div class="validate"><div
+                    class="invalid-feedback"
+                    *ngIf="submitted && controls['fullName'].errors"
+                  >
+                    <span *ngIf="controls['fullName'].errors['required']">
+                      Full name is required
+                    </span>
+                    <span *ngIf="controls['fullName'].errors['minlength']">
+                      Full name is must >=3 Charactrers
+                    </span>
+                    <span *ngIf="controls['fullName'].errors['pattern']">
+                      Full name is must A to Z or a to z
+                    </span>
+                  </div></div>
                 </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <input
-            class="form-control form-control-lg"
-            type="tel"
-            placeholder="Your Phone"
-            formControlName="phone"
-            id="phone"
-            name="phone"
-            [ngClass]="{
-              'is-invalid': submitted && controls['phone'].errors
-            }"
-          />
-                <div class="validate">
-                  <div
-            class="invalid-feedback"
-            *ngIf="submitted && controls['phone'].errors"
-          >
-            <span *ngIf="controls['phone'].errors['required']">
-              Phone number is required!
-            </span>
-            <span *ngIf="controls['phone'].errors['pattern']">
-              Phone number is must be valid!
-            </span>
-          </div>
-                </div>
-              </div>
-        
-             
-              
-              
-            </div>
-            <div class="form-group mt-3">
-              <textarea
+                <div class="col-lg-4 col-md-6">
+                  <input
               class="form-control form-control-lg"
-              formControlName="message"
-              id="message"
-              name="message"
-              placeholder="Message"
-              rows="2"
-            ></textarea>
-              <div class="validate"></div>
+              placeholder="Your Email"
+              type="email"
+              formControlName="email"
+              id="email"
+              name="email"
+              [ngClass]="{
+                'is-invalid': submitted && controls['email'].errors
+              }"
+            />
+                  <div class="validate">
+                    <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['email'].errors"
+            >
+              <span *ngIf="controls['email'].errors['email']">
+                Email is must be valid!
+              </span>
             </div>
-            
-            <div class="mb-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <input
+              class="form-control form-control-lg"
+              type="tel"
+              placeholder="Your Phone"
+              formControlName="phone"
+              id="phone"
+              name="phone"
+              [ngClass]="{
+                'is-invalid': submitted && controls['phone'].errors
+              }"
+            />
+                  <div class="validate">
+                    <div
+              class="invalid-feedback"
+              *ngIf="submitted && controls['phone'].errors"
+            >
+              <span *ngIf="controls['phone'].errors['required']">
+                Phone number is required!
+              </span>
+              <span *ngIf="controls['phone'].errors['pattern']">
+                Phone number is must be valid!
+              </span>
             </div>
-            <div class="text-center">
-              <button type="submit">
-                Book Reservation
-              </button></div>
-          </form>
+                  </div>
+                </div>
+          
+               
+                
+                
+              </div>
+              <div class="form-group mt-3">
+                <textarea
+                class="form-control form-control-lg"
+                formControlName="message"
+                id="message"
+                name="message"
+                placeholder="Message"
+                rows="2"
+              ></textarea>
+                <div class="validate"></div>
+              </div>
+              
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+              </div>
+              <div class="text-center">
+                <button type="submit">
+                  Send Your Message
+                </button></div>
+            </form>
+          </div>
         </div>
+
+        
 
       </div>
     </section><!-- End Contact Section -->
