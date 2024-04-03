@@ -1,10 +1,7 @@
 <nz-card nzBorderless style="width: 100%" >
-  <nz-card-tab>
-    <nz-tabset
-      [(nzSelectedIndex)]="activeTabIndex"
-      (nzSelectedIndexChange)="onTabChange($event)"
-    >
-      <nz-tab *ngFor="let tab of dates" [nzTitle]="tab">
+  
+ 
+    
         <nz-table
           #filterTable
           [nzData]="listOfData"
@@ -54,8 +51,8 @@
             </ng-container>
           </tbody>
         </nz-table>
-      </nz-tab>
-    </nz-tabset>
-  </nz-card-tab>
+  
+    
+  
 </nz-card>
 
