@@ -53,7 +53,11 @@ export class ReservationService {
       .delete<any>(this.reservationsUrl + `/${id}`)
       .pipe(catchError(this.handleError<any>('Delete Reservation')));
   }
-
+  deleteReservationcomment(id: number): Observable<any> {
+    return this.http
+      .delete<any>(this.reservationsUrl2 + `/${id}`)
+      .pipe(catchError(this.handleError<any>('Delete comment')));
+  }
   // Update Reserved Table Status
   updateReservedTableStatus(
     ReservedTableStatus: any,

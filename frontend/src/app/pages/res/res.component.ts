@@ -159,7 +159,7 @@
     
       deleteData(id: string) {
         var resId = +id;
-        this.reservationService.deleteReservation(resId).subscribe((res) => {
+        this.reservationService.deleteReservationcomment(resId).subscribe((res) => {
           this.message.success('Delete successful!', { nzDuration: 3000 });
           location.reload();
         });
