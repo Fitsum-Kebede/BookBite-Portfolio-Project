@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
-
+ 
+// comment model
+// Declare a variable for the model and add the field names
 const comment = sequelize.define('comment', {
   fullName: {
     type: DataTypes.STRING,
@@ -17,9 +19,10 @@ const comment = sequelize.define('comment', {
   message: {
     type: DataTypes.STRING,
   },
+  // for future use
   status: {
     type: DataTypes.STRING,
-    allowNull: true, // Set this to true or false depending on your requirements
+    allowNull: true, 
   },
 });
 

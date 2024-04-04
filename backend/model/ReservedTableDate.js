@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
+// model for reserved table
 const ReservedTableDate = sequelize.define('ReservedTableDate', {
   date: {
     type: DataTypes.DATEONLY,

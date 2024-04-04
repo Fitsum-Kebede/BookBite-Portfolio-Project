@@ -3,7 +3,8 @@ const Reservation = require('../model/comment');
 const router = express.Router();
 const authMiddleware = require('../middleware/auth');
 
-// Create a reservation
+// Create a comment
+// insert/get a comment from the user to the database according to the model
 router.post('/', async (req, res) => {
   try {
     const reservation = await Reservation.create(req.body);

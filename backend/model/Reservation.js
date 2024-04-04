@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
+// Declare a variable for the model and add the field names
 const Reservation = sequelize.define('Reservation', {
   fullName: {
     type: DataTypes.STRING,

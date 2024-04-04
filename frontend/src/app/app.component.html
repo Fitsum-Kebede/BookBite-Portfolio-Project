@@ -1,3 +1,4 @@
+<!-- application html side bar -->
 <nz-layout class="app-layout" *ngIf="!(_router.url == '/reservation-form')">
   <nz-sider
     class="menu-sidebar"
@@ -16,7 +17,8 @@
         _router.url === '/reservation-form#menu'||
         _router.url === '/reservation-form#contact' ||
         _router.url === '/reservation-form#chefs' ||
-        _router.url === '/reservation-form#book-a-table'
+        _router.url === '/reservation-form#book-a-table' ||
+        _router.url === '/reservation-form'
       )
     "
   >
@@ -80,7 +82,8 @@
           _router.url === '/reservation-form#menu'||
           _router.url === '/reservation-form#contact'||
           _router.url === '/reservation-form#chefs'||
-          _router.url === '/reservation-form#book-a-table'
+          _router.url === '/reservation-form#book-a-table'||
+          _router.url === '/reservation-form'
         )
       "
     >

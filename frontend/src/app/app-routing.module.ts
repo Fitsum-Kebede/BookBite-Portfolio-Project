@@ -12,7 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ResComponent } from './pages/res/res.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/reservation-form' },
+  { path: '', pathMatch: 'full', redirectTo: '/reservation-form#hero' },
   {
     path: 'reservation',
     component: ReservationComponent,

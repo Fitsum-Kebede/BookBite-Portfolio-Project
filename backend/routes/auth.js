@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 const router = express.Router();
 
-// Registration
+// Registration endpoint
 router.post('/register', async (req, res) => {
     try {
         const { fullName, email, phone, password, confirmPassword } = req.body;
@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ message: "Passwords don't match" });
         }
 
+        // decript the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await User.create({
@@ -29,6 +30,7 @@ router.post('/register', async (req, res) => {
             { expiresIn: '24h' } // Token expiration time
         );
 
+        //send the token and the data to regester
         return res.status(201).json({ message: 'Registraion successful', user: user, token: token });
     } catch (error) {
         console.error(error);

@@ -12,12 +12,14 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
+// only acceptfrom the spasific front-end
 app.use(cors({
     origin: ['http://localhost:4200'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// list of endpoints
 app.use('/api/auth', authRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/comment', reservationcomment);
